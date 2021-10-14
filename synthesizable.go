@@ -96,7 +96,6 @@ func Script(inputDir string, outputDir string, pattern string, isAlert bool, use
 func checkAndAlert(infos []SeqInfo) {
 	haveProblems := false
 	for _, info := range infos {
-		fmt.Println(info)
 		if !info.IsSynthesizable {
 			haveProblems = true
 			fmt.Printf("The sequence %s can't be synthesized.\nSequence: %s\n\n", info.Name, info.Sequence)
