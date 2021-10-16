@@ -27,7 +27,7 @@ inputs:
         required: true
     alert:
         description: 'Show a error in the pipeline if found out a not synthesizable sequence'
-        default: false
+        required: false
 runs:
     using: 'docker'
     image: 'Dockerfile'
