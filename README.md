@@ -1,3 +1,3 @@
-# Synthesizable
+# dna-is-synthesizable
 
-Synthesizable is a github action to check if a part is synthesizable from a given Genbank file.
+A github action to check if a part is synthesizable from a given Genbank file.

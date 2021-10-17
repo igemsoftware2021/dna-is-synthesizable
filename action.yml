@@ -1,46 +1,46 @@
-name: synthesizable
+name: dna-is-synthesizable
 description: A Github action to annotate problematic sequences from given Genbank file.
 inputs:
-    inputDir:  # id of input
+    input-dir:  # id of input
         description: 'Directory with all genbank to be read and annotated'
         required: true
         default: 'input'
-    pattern:
+    input-pattern:
         description: 'User-specified pattern to select specific files from the input directory'
         required: true
         default: '.*\.\(gb\|gbk\)'
-    outputDir:
+    output-dir:
         description: 'Directory where all genbank annotated will be written'
         required: true
         default: 'output'
-    username:
+    input-username:
         description: 'Username from an IDT account'
         required: true
-    password:
+    input-password:
         description: 'Password from and IDT account'
         required: true
-    clientId:
+    input-client-id:
         description: 'ClientId from an IDT account'
         required: true
-    clientSecret:
+    input-client-secret:
         description: 'Client Secret from and IDT account'
         required: true
-    alert:
+    output-alert:
         description: 'Show a error in the pipeline if found out a not synthesizable sequence'
         required: false
 runs:
     using: 'docker'
     image: 'Dockerfile'
     args:
-        - ${{ inputs.inputDir }}
-        - ${{ inputs.outputDir }}
-        - ${{ inputs.pattern }}
-        - ${{ inputs.username }}
-        - ${{ inputs.password }}
-        - ${{ inputs.clientId }}
-        - ${{ inputs.clientSecret }}
-        - ${{ inputs.alert }}
+        - ${{ inputs.input-dir           }}
+        - ${{ inputs.output-dir          }}
+        - ${{ inputs.input-pattern       }}
+        - ${{ inputs.input-username      }}
+        - ${{ inputs.input-password      }}
+        - ${{ inputs.input-client-id     }}
+        - ${{ inputs.input-client-secret }}
+        - ${{ inputs.output-alert        }}
 author: Friendzymes Team
 branding:
-      icon: 'layers'
-      color: 'purple'
+    icon:  'layers'
+    color: 'purple'
