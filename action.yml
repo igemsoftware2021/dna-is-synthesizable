@@ -1,46 +1,46 @@
-name: synthesizable
-description: A Github action to annotate problematic sequences from given Genbank file.
+name: dna-is-synthesizable
+description: A github action to check if a part is synthesizable from a given Genbank file.
 inputs:
-    inputDir:  # id of input
-        description: 'Directory with all genbank to be read and annotated'
+    input-dir:  # id of input
+        description: 'Directory where all the input genbank files will be read'
         required: true
         default: 'input'
-    pattern:
-        description: 'User-specified pattern to select specific files from the input directory'
+    input-pattern:
+        description: 'Regex to filter files in the input directory'
         required: true
         default: '.*\.\(gb\|gbk\)'
-    outputDir:
-        description: 'Directory where all genbank annotated will be written'
+    output-dir:
+        description: 'Directory where all the output genbank files will be written'
         required: true
         default: 'output'
-    username:
-        description: 'Username from an IDT account'
+    input-username:
+        description: 'IDT account username'
         required: true
-    password:
-        description: 'Password from and IDT account'
+    input-password:
+        description: 'IDT account password'
         required: true
-    clientId:
-        description: 'ClientId from an IDT account'
+    input-client-id:
+        description: 'IDT API ClientId'
         required: true
-    clientSecret:
-        description: 'Client Secret from and IDT account'
+    input-client-secret:
+        description: 'IDT API ClientSecret'
         required: true
-    alert:
-        description: 'Show a error in the pipeline if found out a not synthesizable sequence'
+    output-alert:
+        description: 'Display an error when a non-synthesizable sequence is found'
         required: false
 runs:
     using: 'docker'
     image: 'Dockerfile'
     args:
-        - ${{ inputs.inputDir }}
-        - ${{ inputs.outputDir }}
-        - ${{ inputs.pattern }}
-        - ${{ inputs.username }}
-        - ${{ inputs.password }}
-        - ${{ inputs.clientId }}
-        - ${{ inputs.clientSecret }}
-        - ${{ inputs.alert }}
+        - ${{ inputs.input-dir           }}
+        - ${{ inputs.output-dir          }}
+        - ${{ inputs.input-pattern       }}
+        - ${{ inputs.input-username      }}
+        - ${{ inputs.input-password      }}
+        - ${{ inputs.input-client-id     }}
+        - ${{ inputs.input-client-secret }}
+        - ${{ inputs.output-alert        }}
 author: Friendzymes Team
 branding:
-      icon: 'layers'
-      color: 'purple'
+    icon:  'layers'
+    color: 'purple'

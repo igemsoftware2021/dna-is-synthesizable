@@ -1,4 +1,4 @@
-module github.com/Open-Science-Global/synthesizable
+module github.com/Open-Science-Global/dna-is-synthesizable
 
 go 1.17
 
