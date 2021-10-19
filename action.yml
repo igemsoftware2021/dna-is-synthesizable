@@ -1,32 +1,32 @@
 name: dna-is-synthesizable
-description: A Github action to annotate problematic sequences from given Genbank file.
+description: A github action to check if a part is synthesizable from a given Genbank file.
 inputs:
     input-dir:  # id of input
-        description: 'Directory with all genbank to be read and annotated'
+        description: 'Directory where all the input genbank files will be read'
         required: true
         default: 'input'
     input-pattern:
-        description: 'User-specified pattern to select specific files from the input directory'
+        description: 'Regex to filter files in the input directory'
         required: true
         default: '.*\.\(gb\|gbk\)'
     output-dir:
-        description: 'Directory where all genbank annotated will be written'
+        description: 'Directory where all the output genbank files will be written'
         required: true
         default: 'output'
     input-username:
-        description: 'Username from an IDT account'
+        description: 'IDT account username'
         required: true
     input-password:
-        description: 'Password from and IDT account'
+        description: 'IDT account password'
         required: true
     input-client-id:
-        description: 'ClientId from an IDT account'
+        description: 'IDT API ClientId'
         required: true
     input-client-secret:
-        description: 'Client Secret from and IDT account'
+        description: 'IDT API ClientSecret'
         required: true
     output-alert:
-        description: 'Show a error in the pipeline if found out a not synthesizable sequence'
+        description: 'Display an error when a non-synthesizable sequence is found'
         required: false
 runs:
     using: 'docker'

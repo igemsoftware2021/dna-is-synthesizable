@@ -18,15 +18,16 @@ This is the segue so you don't get scared when the detail comes in.
 
 Every argument is required.
 
-| Option            | Description                                                              | Default           |
-| ----------------- | ------------------------------------------------------------------------ | ----------------- |
-| [input-dir]       | Directory with all genbank to be read and annotated                      | `input`           |
-| [input-pattern]   | User-specified pattern to select specific files from the input directory | `.*\.\(gb\|gbk\)` |
-| [output-dir]      | Directory where all genbank annotated will be written                    | `output`          |
-| [input-username]  | Username from an IDT account                                             |                   |
-| [input-password]  | Password from an IDT account                                             |                   |
-| [input-client-id] | ClientId from an IDT account                                             |                   |
-| [output-alert]    | Display error if a non-synthesizable sequence is found                   |                   |
+| Option                | Description                                                     | Default           |
+| --------------------- | ----------------------------------------------------------------| ----------------- |
+| [input-dir]           | Directory where all the input genbank files will be read        | `input`           |
+| [input-pattern]       | Regex to filter files in the input directory                    | `.*\.\(gb\|gbk\)` |
+| [output-dir]          | Directory where all the output genbank files will be written    | `output`          |
+| [input-username]      | IDT account username                                            |                   |
+| [input-password]      | IDT account password                                            |                   |
+| [input-client-id]     | IDT API ClientId                                                |                   |
+| [input-client-secret] | IDT API ClientSecret                                            |                   |
+| [output-alert]        | Display an error when a non-synthesizable sequence is found     |                   |
 
 ### Detailed Options
 
@@ -62,6 +63,11 @@ Phasellus ac felis auctor, molestie libero at, posuere tellus. Morbi interdum in
 Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
 
 #### input-client-id
+
+Phasellus ac felis auctor, molestie libero at, posuere tellus. Morbi interdum interdum viverra.
+Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+
+#### input-client-secret
 
 Phasellus ac felis auctor, molestie libero at, posuere tellus. Morbi interdum interdum viverra.
 Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.

@@ -42,9 +42,9 @@ var ComplexityScoreURL = "https://www.idtdna.com/api/complexities/screengBlockSe
 var MaxIDTSequenceLength = 3000
 
 var rootCmd = &cobra.Command{
-	Use:   "synthesizable",
-	Short: "Synthesizable is a github action to check if a part is synthesizable.",
-	Long:  "Synthesizable is a github action to check if a part is synthesizable from a given Genbank file.",
+	Use:   "dna-is-synthesizable",
+	Short: "A github action to check if a part is synthesizable.",
+	Long:  "A github action to check if a part is synthesizable from a given Genbank file.",
 	Run: func(cmd *cobra.Command, args []string) {
 		Script(input, output, pattern, isAlert, idtUsername, idtPassword, idtClientId, idtClientSecret)
 	},
@@ -60,13 +60,13 @@ func Execute() {
 func init() {
 	rootCmd.PersistentFlags().StringVarP(&input, "input", "i", "", "Directory where all the input genbank files will be read")
 	rootCmd.PersistentFlags().StringVarP(&output, "ouput", "o", "", "Directory where all the output genbank files wil be written")
-	rootCmd.PersistentFlags().StringVarP(&pattern, "pattern", "r", "", "Regex to selective filter specific files in the input folder")
-	rootCmd.PersistentFlags().BoolVarP(&isAlert, "alert", "a", false, "If a sequence is not synthesizable alert user by stopping generate a error code")
+	rootCmd.PersistentFlags().StringVarP(&pattern, "pattern", "r", "", "Regex to filter files in the input directory")
+	rootCmd.PersistentFlags().BoolVarP(&isAlert, "alert", "a", false, "Display an error when a non-synthesizable sequence is found")
 
-	rootCmd.PersistentFlags().StringVarP(&idtUsername, "username", "u", "", "Username from the IDT account")
-	rootCmd.PersistentFlags().StringVarP(&idtPassword, "password", "p", "", "Password from the IDT account")
-	rootCmd.PersistentFlags().StringVarP(&idtClientId, "clientId", "c", "", "ClientId registered at IDT associated to the API key access")
-	rootCmd.PersistentFlags().StringVarP(&idtClientSecret, "clientSecret", "s", "", "ClientSecret provided by IDT associated to the clientId")
+	rootCmd.PersistentFlags().StringVarP(&idtUsername, "username", "u", "", "IDT account username")
+	rootCmd.PersistentFlags().StringVarP(&idtPassword, "password", "p", "", "IDT account password")
+	rootCmd.PersistentFlags().StringVarP(&idtClientId, "clientId", "c", "", "IDT API ClientId")
+	rootCmd.PersistentFlags().StringVarP(&idtClientSecret, "clientSecret", "s", "", "IDT API ClientSecret")
 
 	rootCmd.MarkFlagRequired("input")
 	rootCmd.MarkFlagRequired("ouput")
@@ -103,7 +103,7 @@ func checkAndAlert(infos []SeqInfo) {
 	}
 
 	if haveProblems {
-		log.Fatalln("WARNING: We recognize that some problems or are too long and can't be synthesizable according to IDT API. Check the problems in the output file and try again.")
+		log.Fatalln("WARNING: fatal error. Check the problems in the output file and try again.")
 	}
 
 }
