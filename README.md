@@ -8,9 +8,7 @@
 
 A github action to check if a part is synthesizable from a given Genbank file.
 
-dna-annotate is a pretty great tool for low-attention readers like yourself who want the executive summary. This is executive-land, where all the C Suite execs live it up, only reading above the fold and never reading the fine print. Whee!
-
-This is the segue so you don't get scared when the detail comes in.
+dna-is-synthesizable is a Github Action that receives a path for an input directory, a regex pattern that should be used to filter genbank files or another interesting file name pattern, a directory where the output will be written, and also username, password, clientId and clientSecret from IDT API. This action will this information to annotate problematic parts of a given sequence.
 
 ## All options
 
@@ -33,56 +31,52 @@ Every argument is required.
 
 #### input-dir
 
-Phasellus ac felis auctor, molestie libero at, posuere tellus. Morbi interdum interdum viverra.
-Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+This parameter is the path of the directory for your genbank files to read and annotate. You can use this parameters to setup different pipelines for different folders, so your project can be divided in folders with different processes. By default the action will use `input` as the input directory.
 
 Default: `input`
 
 #### input-pattern
 
-Phasellus ac felis auctor, molestie libero at, posuere tellus. Morbi interdum interdum viverra.
-Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+This parameter is a regex pattern using [re2] syntax to filter files from within [input-dir]. So even inside a given input directory, you can select a specific file or group of files for the current job. By default the action will match files with genbank extensions (`.gb` or `.gbk`).
+
+Example: [Match only BBF10k-prefixed files][input-pattern-example-1], freegene 10k gene project parts.
 
 Default: `.*\.\(gb\|gbk\)`
 
 #### output-dir
 
-Phasellus ac felis auctor, molestie libero at, posuere tellus. Morbi interdum interdum viverra.
-Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+This parameter is the path of the directory for outputting annotated sequences as genbank files. By default the action will use `output` as the output directory.
 
 Default: `output`
 
 #### input-username
 
-Phasellus ac felis auctor, molestie libero at, posuere tellus. Morbi interdum interdum viverra.
-Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+Username from the IDT account. This parameter doesn't have any value by default.
 
 #### input-password
 
-Phasellus ac felis auctor, molestie libero at, posuere tellus. Morbi interdum interdum viverra.
-Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+Password from the IDT account. This parameter doesn't have any value by default.
 
 #### input-client-id
 
-Phasellus ac felis auctor, molestie libero at, posuere tellus. Morbi interdum interdum viverra.
-Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+ClientID from the IDT API account. This parameter doesn't have any value by default.
 
 #### input-client-secret
 
-Phasellus ac felis auctor, molestie libero at, posuere tellus. Morbi interdum interdum viverra.
-Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+ClientSecret from the IDT API account. This parameter doesn't have any value by default.
 
 #### output-alert
 
-Phasellus ac felis auctor, molestie libero at, posuere tellus. Morbi interdum interdum viverra.
-Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+This boolean could be selected if you want to break your pipeline if one of the sequences aren't synthesizable by IDT. In that way, the machine will alert you that some sequence is problematic and don't continue the process.
+Default: `false`
 
 ### Usage
 
 Basic:
 
 ```yaml
-name: 'Some dummy YAML'
+- name: synthesizable
+  uses: Open-Science-Global/dna-is-synthesizable@v0.0.5
 ```
 
 See [action.yml] for a comprehensive list of all the options.
