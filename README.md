@@ -8,7 +8,7 @@
 
 A github action to check if a part is synthesizable from a given Genbank file.
 
-dna-is-synthesizable is a Github Action that receives a path for an input directory, a regex pattern that should be used to filter genbank files or another interesting file name pattern, a directory where the output will be written, and also username, password, clientId and clientSecret from IDT API. This action will this information to annotate problematic parts of a given sequence.
+dna-is-synthesizable is a Github Action that receives a path for an input directory, a regex pattern that should be used to filter genbank files or another interesting file name pattern, a directory where the output will be written, and also username, password, clientId and clientSecret from [Integrated DNA Technologies (IDT)][IDT] API. This action will use this information to annotate problematic parts of a given sequence.
 
 ## All options
 
@@ -31,7 +31,7 @@ Every argument is required.
 
 #### input-dir
 
-This parameter is the path of the directory for your genbank files to read and annotate. You can use this parameters to setup different pipelines for different folders, so your project can be divided in folders with different processes. By default the action will use `input` as the input directory.
+This parameter is the path of the directory for your genbank files to read and annotate. You can use this parameter to setup different pipelines for different folders, so your project can be divided in folders with different processes. By default the action will use `input` as the input directory.
 
 Default: `input`
 
@@ -53,21 +53,38 @@ Default: `output`
 
 Username from the IDT account. This parameter doesn't have any value by default.
 
+**Note: Don't commit secrets to git history in production!**
+
+When deploying in production, use [GitHub secrets][secrets] or a similar security mechanism to prevent leaking of access credentials and data.
+
 #### input-password
 
 Password from the IDT account. This parameter doesn't have any value by default.
+
+**Note: Don't commit secrets to git history in production!**
+
+When deploying in production, use [GitHub secrets][secrets] or a similar security mechanism to prevent leaking of access credentials and data.
 
 #### input-client-id
 
 ClientID from the IDT API account. This parameter doesn't have any value by default.
 
+**Note: Don't commit secrets to git history in production!**
+
+When deploying in production, use [GitHub secrets][secrets] or a similar security mechanism to prevent leaking of access credentials and data.
+
 #### input-client-secret
 
 ClientSecret from the IDT API account. This parameter doesn't have any value by default.
 
+**Note: Don't commit secrets to git history in production!**
+
+When deploying in production, use [GitHub secrets][secrets] or a similar security mechanism to prevent leaking of access credentials and data.
+
 #### output-alert
 
-This boolean could be selected if you want to break your pipeline if one of the sequences aren't synthesizable by IDT. In that way, the machine will alert you that some sequence is problematic and don't continue the process.
+This flag can be enabled to break your pipeline if one of the sequences isn't synthesizable by IDT. That way, the machine will alert you that some sequence is problematic.
+
 Default: `false`
 
 ### Usage
@@ -86,6 +103,9 @@ See [Friendzymes Cookbook] for further examples and sample data.
 ---
 
 [Friendzymes Cookbook]:       <https://github.com/Open-Science-Global/friendzymes-cookbook>
+[IDT]:                        <https://www.idtdna.com>
+[input-pattern-example-1]:    <https://regex101.com/library/eEz1xN>
+[secrets]:                    <https://docs.github.com/en/actions/security-guides/encrypted-secrets>
 [re2]:                        <https://github.com/google/re2/wiki/Syntax>
 
 [action.yml]:                 ./action.yml
